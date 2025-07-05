@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -48,11 +49,6 @@
     }
     body.dark {
       color: #ede9fe;
-    }
-    .container {
-      display: flex;
-      min-height: 100vh;
-      flex: 1;
     }
     header {
       position: fixed;
@@ -134,21 +130,26 @@
     .dark-toggle:hover {
       background: rgba(255,255,255,0.12);
     }
+    .container {
+      display: flex;
+      min-height: 100vh;
+      flex: 1;
+      padding-top: 80px; /* Height of header */
+    }
     @media (max-width: 700px) {
-      .header-content { gap: 0.7rem; max-width: 98vw; }
-      .logo svg { width: 36px; height: 36px; }
-      .header-title { font-size: 1.1rem; letter-spacing: 1px; }
-      .header-tagline { font-size: 0.9rem; }
-      header { height: 60px; }
-      aside, main { margin-top: 60px !important; }
-      .dark-toggle { font-size: 1.1rem; padding: 0.2rem 0.5rem; }
+      .container {
+        flex-direction: column;
+        padding-top: 60px; /* Height of header on mobile */
+      }
+    }
+    aside, main {
+      margin-top: 0 !important;
     }
     aside {
       width: 270px;
       background: var(--sidebar-bg);
       color: var(--sidebar-text);
       padding: 2.5rem 1.2rem 1rem 1.2rem;
-      margin-top: 80px;
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
@@ -262,7 +263,6 @@
     main {
       flex: 1;
       padding: 2.5rem 2.5rem 1rem 2.5rem;
-      margin-top: 80px;
       background: var(--main-bg);
       min-height: calc(100vh - 80px);
       display: flex;
@@ -450,35 +450,35 @@
       main { padding: 1.5rem 0.5rem 1rem 0.5rem; }
     }
     @media (max-width: 700px) {
-      .container { flex-direction: column; }
-      aside { width: 100%; margin-top: 60px !important; box-shadow: none; min-height: unset; }
-      main { padding: 1rem; margin-top: 0; }
+      .container { flex-direction: column; padding-top: 60px; }
+      aside { width: 100%; box-shadow: none; min-height: unset; }
+      main { padding: 1rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="header-content">
-        <span class="logo">
-          <svg viewBox="0 0 48 48" fill="none">
-            <defs>
-              <linearGradient id="circleGradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#a78bfa"/>
-                <stop offset="1" stop-color="#6366f1"/>
-              </linearGradient>
-            </defs>
-            <circle cx="24" cy="24" r="20" fill="url(#circleGradient)" />
-            <path d="M16 25l7 7 10-13" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <div class="header-titles">
-          <span class="header-title">To-Do App</span>
-          <span class="header-tagline">Your productivity, reimagined.</span>
-        </div>
-        <button class="dark-toggle" id="dark-toggle" title="Toggle dark mode">🌙</button>
+  <header>
+    <div class="header-content">
+      <span class="logo">
+        <svg viewBox="0 0 48 48" fill="none">
+          <defs>
+            <linearGradient id="circleGradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#a78bfa"/>
+              <stop offset="1" stop-color="#6366f1"/>
+            </linearGradient>
+          </defs>
+          <circle cx="24" cy="24" r="20" fill="url(#circleGradient)" />
+          <path d="M16 25l7 7 10-13" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div class="header-titles">
+        <span class="header-title">To-Do App</span>
+        <span class="header-tagline">Your productivity, reimagined.</span>
       </div>
-    </header>
+      <button class="dark-toggle" id="dark-toggle" title="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+  <div class="container">
     <aside>
       <h2>Your Lists</h2>
       <div id="lists-container">
@@ -492,7 +492,6 @@
         <div>Welcome! Start by creating your first list.</div>
         <button class="example-lists-btn" id="add-example-lists-btn">Add Example Lists</button>
       </div>
-      <!-- "sidebar-about" section removed -->
     </aside>
     <main>
       <div id="main-welcome" class="main-welcome" style="display:none;">
